@@ -1,4 +1,5 @@
 import { colors, fonts } from '../theme.js';
+import { useTranslation } from 'react-i18next';
 
 const HERO_VIDEO_URL = 'https://69f702fe07a8ef6537054b52c95d3d89.r2.cloudflarestorage.com';
 

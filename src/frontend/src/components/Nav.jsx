@@ -1,4 +1,5 @@
 import { colors, fonts } from '../theme.js';
+import { useTranslation } from 'react-i18next';
 
 export default function Nav() {
   return (

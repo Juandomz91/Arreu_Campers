@@ -1,8 +1,8 @@
 import { colors, fonts } from '../theme.js';
 import ImagePlaceholder from './ImagePlaceholder.jsx';
-import nurbi from 'src/frontend/recursos/nurbi.jpg';
-import duo from 'src/frontend/recursos/duo.jpeg';
-import blues from 'src/frontend/recursos/blues.jpg';
+import nurbi from '../recursos/nurbi.jpg';
+import duo from '../recursos/duo.jpeg';
+import blues from '../recursos/blues.jpg';
 
 export function QueFem() {
   const items = [
@@ -13,7 +13,6 @@ export function QueFem() {
   return (
     <section style={{ padding: '100px 24px', background: colors.bg }}>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-        
         <h2 style={{ fontFamily: fonts.logo, fontSize: 'clamp(32px,5vw,56px)', margin: '10px 0 24px', textTransform: 'uppercase', lineHeight: 1 }}>Què fem</h2>
         <p style={{fontFamily: fonts.logo, maxWidth: 640, fontSize: 18, lineHeight: 1.6, color: colors.bodyText, marginBottom: 56 }}>
           Arreu Campers és una empresa dedicada a assessorar, dissenyar, construir i homologar camperitzacions a mida, de qualitat i amb un enfocament curiós.<br/><br/>
@@ -45,19 +44,19 @@ export function QuiSom() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 24 }}>
           <div>
             <div style={{ aspectRatio: '4/3', width: '100%' }}>
-              <img src="src/frontend/recursos/nurbi.jpg" alt="Foto de l'equip al taller" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              <img src={nurbi} alt="Foto de l'equip al taller" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }} />
             </div>
             <div style={{ background: '#1c1b17', padding: '14px 16px', marginTop: 10 }}>
-              <div style={{ fontFamily: fonts.mono, fontStyle: 'italic', fontSize: 15, fontWeight: 600, color: colors.bg }}>Norbert</div>
+              <div style={{ fontFamily: fonts.mono, fontStyle: 'italic', fontSize: 15, fontWeight: 600, color: colors.bg, }}>Norbert</div>
               <div style={{ fontFamily: fonts.mono, fontStyle: 'italic', fontSize: 13, color: colors.bodyTextLight, marginTop: 4 }}>Esquiador i amant dels racons remots. El més feliç en dies de forta tramuntana.<br/> Cul inquiet, sempre en porta alguna de cap. Amant dels gadgets de tota mena.</div>
             </div>
           </div>
           <div style={{ aspectRatio: '4/3', width: '100%' }}>
-            <img src="src/frontend/recursos/duo.jpeg" alt="Foto del taller" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            <img src={duo} alt="Foto del taller" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
           </div>
           <div>
             <div style={{ aspectRatio: '4/3', width: '100%' }}>
-              <img src="src/frontend/recursos/blues.jpg" alt="Foto del vehicle" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+             <img src={blues} alt="Foto del vehicle" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 70%', display: 'block' }} />
             </div>
             <div style={{ background: '#1c1b17', padding: '14px 16px', marginTop: 10 }}>
               <div style={{ fontFamily: fonts.mono, fontStyle: 'italic', fontSize: 15, fontWeight: 600, color: colors.bg }}>Blues</div>
