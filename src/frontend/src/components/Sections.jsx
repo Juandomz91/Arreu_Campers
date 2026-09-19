@@ -37,7 +37,7 @@ export function QuiSom() {
     <section style={{ padding: '100px 24px', background: colors.ink, color: colors.bg }}>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <h2 style={{ fontFamily: fonts.logo, fontSize: 'clamp(32px,5vw,52px)', margin: '10px 0 24px', textTransform: 'uppercase', lineHeight: 1, color: colors.accent }}>QUI</h2>
-          <p style={{fontFamily: fonts.logo, maxWidth: 640, fontSize: 18, lineHeight: 1.6, color: colors.bodyTextLight, marginBottom: 56 }}>
+          <p style={{fontFamily: fonts.logo, maxWidth: 900, fontSize: 18, lineHeight: 1.6, color: colors.bodyTextLight, marginBottom: 56 }}>
            Un petit taller independent de Girona, creat i portat per una sola persona. <br/> Una manera propera d'entendre les camperitzacions: pocs projectes anuals, artesania i atenció al detall.
           </p>
 
