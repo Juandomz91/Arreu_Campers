@@ -44,7 +44,7 @@ export default function ContactForm() {
 
   return (
     <section>
-      <div style={{ width: '100%', height: 'clamp(220px, 40vw, 520px)' }}>
+      <div style={{ width: '100%', height: '100%' }}>
         <img src={"src/recursos/furgoneteo.jpg"} alt={t('contact.photoAlt')} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%', display: 'block' }} />
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(280px,1fr) minmax(0,2fr)' }}>

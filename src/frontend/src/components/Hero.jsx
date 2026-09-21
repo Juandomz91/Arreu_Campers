@@ -3,12 +3,17 @@ import { colors, fonts } from '../theme.js';
 import { useTranslation } from 'react-i18next';
 import logo from '../recursos/logo.svg';
 
-// Vídeo del Hero. Posa el fitxer a  src/frontend/public/video/hero.mp4
-// (tot el que hi ha a /public es serveix tal qual des de l'arrel del web).
-// Si més endavant el puges a Cloudflare R2, canvia això per la URL pública
-// COMPLETA del fitxer, p. ex. 'https://pub-xxxxxxxx.r2.dev/hero.mp4'.
 const HERO_VIDEO_URL = '/video/hero.mp4';
-const HERO_POSTER_URL = '/video/hero-poster.jpg'; // primer fotograma, es veu mentre carrega
+const HERO_POSTER_URL = '/video/hero-poster.jpg';
+
+// Mida del logo (la mateixa per al logo i per a l'espai que se li reserva)
+const LOGO_WIDTH = 'clamp(240px, 60vw, 560px)';
+const LOGO_RATIO = '453.6 / 198.48'; // proporcions del logo.svg
+// Halo clar al voltant del logo: el negre queda sòlid i es llegeix sobre zones fosques del vídeo.
+// Per treure'l del tot: const LOGO_HALO = 'none';
+const LOGO_HALO = 'drop-shadow(0 0 1px #fff) drop-shadow(0 0 2px #fff)';
+// On es queda enganxat el logo en fer scroll: just per sota del Nav
+const LOGO_STICKY_TOP = 88;
 
 const linkStyle = { background: colors.ink, padding: '4px 10px', marginTop: 6, color: colors.accent, display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none' };
 const labelStyle = { background: colors.ink, padding: '4px 10px', display: 'inline-block', marginTop: 6 };
@@ -17,27 +22,32 @@ export default function Hero() {
   const { t } = useTranslation();
   const videoRef = useRef(null);
 
-  // React no sempre escriu l'atribut `muted` al DOM, i sense ell alguns
-  // navegadors (sobretot Safari a iOS) bloquegen l'autoplay. Ho forcem aquí.
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
     v.muted = true;
-    v.play().catch(() => { /* autoplay bloquejat: es queda el poster */ });
+    v.play().catch(() => {});
   }, []);
 
   return (
-    <>
-      <section style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '64px 24px 0', background: colors.bg }}>
-        <div style={{ maxWidth: 900, width: '100%' }}>
+    // Contenidor de Hero + vídeo. `overflow: clip` retalla tot el que en surti
+    // per baix: és la "vora" que es menja el logo.
+    <div style={{ position: 'relative', overflow: 'clip' }}>
+
+      {/* Capa del logo: ocupa tot el contenidor i s'allarga 100vh per sota,
+          perquè el logo pugui seguir baixant més enllà de la vora i ser retallat. */}
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: '-100vh', zIndex: 2, pointerEvents: 'none' }}>
+        <div style={{ position: 'sticky', top: LOGO_STICKY_TOP, paddingTop: 64, display: 'flex', justifyContent: 'center' }}>
           <h1 style={{ margin: 0 }}>
-            <img
-              src={logo}
-              alt="Arreu Campers"
-              style={{ width: 'clamp(240px, 60vw, 560px)', height: 'auto', display: 'block', margin: '0 auto' }}
-            />
+            <img src={logo} alt="Arreu Campers" style={{ width: LOGO_WIDTH, height: 'auto', display: 'block', filter: LOGO_HALO }} />
           </h1>
         </div>
+      </div>
+
+      <section style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '64px 24px 0', background: colors.bg }}>
+        {/* Espai buit del mateix tamany que el logo, perquè el text no hi quedi a sota */}
+        <div aria-hidden="true" style={{ width: LOGO_WIDTH, aspectRatio: LOGO_RATIO }} />
+
         <div style={{ marginTop: 28, fontSize: 'clamp(14px,2vw,20px)', lineHeight: 1.9, color: colors.accent, fontWeight: 600, fontFamily: fonts.mono }}>
           <span style={{ background: colors.ink, padding: '4px 10px', display: 'inline-block' }}>{t('hero.tagline')}</span><br />
           <span style={labelStyle}>{t('hero.projects')}</span>{' '}
@@ -58,6 +68,7 @@ export default function Hero() {
           </a>
         </div>
       </section>
+
       <div style={{ width: '100%', aspectRatio: '16/6', maxHeight: 420, background: colors.ink }}>
         <video
           ref={videoRef}
@@ -72,6 +83,6 @@ export default function Hero() {
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
         />
       </div>
-    </>
+    </div>
   );
 }
